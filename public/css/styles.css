@@ -1,0 +1,32 @@
+body {
+  background-color: #FFD5C2;
+  text-align: center;
+}
+
+button {
+  
+}
+
+.options-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.planner-box {
+  margin: 10px;
+  color: #f4ecec;
+  background-color: #F28F3B;
+  border-radius: 20px;
+  padding-bottom: 30px;
+  box-shadow: 10px 10px #ac560a;
+}
+
+.register-box {
+  margin: 10px;
+  color: #f4ecec;
+  background-color: #d314da;
+  border-radius: 20px;
+  padding-bottom: 30px;
+  box-shadow: 10px 10px #8c0b90;
+}
+
