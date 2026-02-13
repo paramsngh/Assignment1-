@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMU Events</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/TMU_Bold_Logo.svg/250px-TMU_Bold_Logo.svg.png">
+    <link rel="stylesheet" href="css/events.css">
+  </head>
+
+  <body>
+    
+    <div class="events-box">
+      <button onClick=getItems()>Click to Load Events</button>
+      <ul id="eventList"></ul>
+    </div>
+
+    <script>
+
+      // Function to get list of all events
+      async function getItems() {
+
+        // Fetch response 
+        const res = await fetch('/api/events'); 
+        const events = await res.json();
+
+        // Gets and clears eventList element
+        const eventList = document.getElementById('eventList');
+        eventList.innerHTML = '';
+  
+        // If there are no events, edit eventsList with a list item notifying there is none
+        if (events.length === 0) {
+          eventList.innerHTML = "<li>No events at this time</li>";
+          return;
+        }
+
+        // For each event, create a li item, populate its textContent with corresponding info, and append to eventList
+        events.forEach(e => {
+
+          // Creates li item, and fills its text content with the appropriate information for the event
+          const li = document.createElement('li');
+          li.textContent = `ID: ${e.id} | Event Name: ${e.title} | Start Time: ${e.startTime} | End Time: ${e.endTime} | Location: ${e.location}`;
+
+          // Create Delete button to remove events
+          const button = document.createElement('button');
+          button.textContent = "Delete";
+
+          // Add onclick event that calls the deleteEvent function, appends button onto li item
+          button.onclick = () => deleteEvent(e.id);
+          li.appendChild(button);
+
+          // Append li onto eventList
+          eventList.appendChild(li);
+        });
+      }
+
+      // Function to delete events from eventList
+      async function deleteEvent(id) {
+
+        // Sends DELETE request to server
+        const res = await fetch(`/api/events/${id}`, {
+        method: 'DELETE'
+        });
+
+        // Waits for the API response and displays its delete message
+        const reply = await res.json();
+        alert(reply.message);
+
+        // Calls getItems to re-display list
+        getItems();
+      }
+
+    </script>
+
+  </body>
+</html>

@@ -1,63 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TMU Planner Homepage</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMU Planner Homepage</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/TMU_Bold_Logo.svg/250px-TMU_Bold_Logo.svg.png">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
 
-    <!-- Website title and description -->
-    <div class="title-box">
-
-      <h1> TMU Event Planner </h1>
-      <p> Want to set up or view school-wide events? Use the TMU 
-        Event Planner! Select from the options below!
-      </p>
-
-    </div>
-
-    <!-- Grid with two side-by-side boxes, one for creating events and other for viewing-->
-    <div class="options-grid">
-
-      <!-- Planning event section, with button to redirect to Create page-->
-      <div class="planner-box">
-        <h2> Interested in Running an Event? </h2>
-        <p> Click on the button below!</p>
-        <form action="/create" method="get">
-          <button type="submit"> Create Now</button>
-        </form>
+  <body>
+      <!-- Website title and description -->
+      <div class="title-box">
+        <h1> TMU Event Planner </h1>
+        <p> Want to set up or view school-wide events? Use the TMU 
+          Event Planner! Select from the options below!
+        </p>
       </div>
 
-       <!-- Viewing event section, with button to redirect to Event page-->
-      <div class="events-box">
-        <h2> Want to Take a Look at the Current Events? </h2>
-        <p> Click on the button below!</p>
-        <form action="/events" method="get">
-          <button type="submit"> View Now </button>
-        </form>
+      <!-- Grid with two side-by-side boxes, one for creating events and other for viewing-->
+      <div class="options-grid">
+
+        <!-- Planning event section, with button to redirect to Create page-->
+        <div class="planner-box">
+          <h2> Interested in Running an Event? </h2>
+          <p> Click on the button below!</p>
+          <form action="/create" method="get">
+            <button type="submit"> Create Now</button>
+          </form>
+        </div>
+
+        <!-- Viewing event section, with button to redirect to Event page-->
+        <div class="events-box">
+          <h2> Want to Take a Look at the Current Events? </h2>
+          <p> Click on the button below!</p>
+          <form action="/events" method="get">
+            <button type="submit"> View Now </button>
+          </form>
+        </div>
+
       </div>
 
-    </div>
+      <!-- Image grid with 3 figures (img and caption) representing potential events-->
+      <div class="image-grid">
+        <figure>
+          <img src="https://www.torontomu.ca/content/dam/recreation/activity/intramural/dodgeball_rsz.jpg">
+          <figcaption> Dodgeball </figcaption>
+        </figure>
+        <figure>
+          <img src="https://www.torontomu.ca/content/dam/news-events/news/2023/08/web-orientation1.jpg">
+          <figcaption> Concerts </figcaption>
+        </figure>
+        <figure>
+          <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/Picture1-min.png">
+          <figcaption> Conferences </figcaption>
+        </figure>
+      </div>
 
-    <!-- Image grid with 3 figures (img and caption) representing potential events-->
-    <div class="image-grid">
-      <figure>
-        <img src="https://www.torontomu.ca/content/dam/recreation/activity/intramural/dodgeball_rsz.jpg">
-        <figcaption> Dodgeball </figcaption>
-      </figure>
-      <figure>
-        <img src="https://www.torontomu.ca/content/dam/news-events/news/2023/08/web-orientation1.jpg">
-        <figcaption> Concerts </figcaption>
-      </figure>
-      <figure>
-        <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/Picture1-min.png">
-        <figcaption> Conferences </figcaption>
-      </figure>
-    </div>
-
-    <!-- Image grid description-->
-    <h3> Above are Just a Few of the Events You Can be Apart of! Get Involved Now!</h3>
-
-</body>
+      <!-- Image grid description-->
+      <h3> Above are Just a Few of the Events You Can be Apart of! Get Involved Now!</h3>
+  </body>
+</html>
