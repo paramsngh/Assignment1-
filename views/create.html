@@ -24,7 +24,7 @@
                 <!--Input box for the event name-->
                 <div>
                     <label class="input-text">Event Name:</label>
-                    <input type="text" class="text-box" id="eventName" maxlength="55" required>
+                    <input type="text" class="text-box" id="eventName" maxlength="40" required>
                 </div>
 
                 <!--Date-->
@@ -37,14 +37,15 @@
                 <div>
                     <label class="input-text">Location:</label>
                     <select id="location" class="text-box" required>
-                        <option>SLC Amphitheatre</option>
+                        <option>ILC Lounge</option>
+                        <option>Kerr Hall Upper Gym</option>
+                        <option>Kerr Quad</option>
+                        <option>MAC Court</option>
                         <option>RAC Court 1</option>
                         <option>RAC Court 2</option>
-                        <option>Kerr Hall Upper Gym</option>
-                        <option>MAC Court</option>
-                        <option>SCC</option>
                         <option>RCC</option>
-                        <option>ILC Lounge</option>
+                        <option>SCC</option>
+                        <option>SLC Amphitheatre</option>
                         <option>TRSM Building</option>
                     </select>
                 </div>
@@ -68,8 +69,24 @@
             </form>
         </div>
 
-        
+        <!--A division containing a grid from the class to display the various spaces that can be booked-->
         <div class="event-spaces-grid">
+            <div>
+                <h2>ILC Lounge</h2>
+                <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/SLC107-min.jpg" alt="Picture of SLC">
+                <p>
+                    The ICL (International Living/Learning Centre) is one of TMU's three residence buildings.
+                    What sets this building apart from the others is the lounge that is has on the first floor.
+                    This lounge can be booked for events!
+                </p>
+            </div>
+            <div>
+                <h2>Kerr Hall Upper Gym</h2>
+                <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/SLC107-min.jpg" alt="Picture of SLC">
+                <p>
+                    The Kerr Hall Upper Gym is one of the few gymnasiums that TMU.
+                </p>
+            </div>
             <div>
                 <h2>SLC</h2>
                 <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/SLC107-min.jpg" alt="Picture of SLC">
@@ -91,7 +108,7 @@
                 </p>
             </div>
             <div>
-                <h2>SCCs</h2>
+                <h2>SCC</h2>
                 <img src="https://theeyeopener.com/wp-content/uploads/2020/02/SCC_RyanDioso.jpg" alt="Picture of SCC">
                 <p>
                     The SCC (Student Campus Centre) is a great spot for students to relax, study, unwind, 
@@ -113,11 +130,17 @@
 
         <!--Inline Javascript to populate the start/end time select tags-->
         <script>
-            function setTimes(id, startHour, endHour, minIntervals) {
+            function setTimes(id, startHour, endHour, minIntervals, startAtHalf, endAtHalf) {
                 let html = '';
                 const select = document.getElementById(id);
                 for(let hour = startHour; hour <= endHour; hour++) {
                     for(let min = 0; min < 60; min += minIntervals) {
+                        if(hour === startHour && min === 0 && startAtHalf) {
+                            min += 30
+                        }
+                        if(hour === endHour && endAtHalf) {
+                            break;
+                        }
                         if(hour === endHour && min > 0) {
                             break;
                         }
@@ -128,20 +151,29 @@
                 }
                 select.innerHTML = html;
             }
-            setTimes("startTime", 8, 22, 30);
-            setTimes("endTime", 8, 22, 30);
+            setTimes("startTime", 8, 22, 30, false, true);
+            setTimes("endTime", 8, 22, 30, true, false);
 
             const start = document.getElementById("startTime");
             const end = document.getElementById("endTime");
             const form = document.getElementById("eventForm");
 
-            // Disable all of the prior times when a start time is selected by comparing their numerical time values.
+            // Disable all of the prior times when a start time is selected by comparing their numerical time values
             start.addEventListener("change", () => {
                 const startValue = Number(start.value.split(':').join(''));
                 for(let time of end.options) {
                     time.disabled = Number(time.value.split(':').join('') <= startValue);
                 }
-            })
+            });
+
+            // Disable all of the later times when an end time is selected by comparing their numerical time values
+            end.addEventListener("change", () => {
+                const endValue = Number(end.value.split(':').join(''));
+                for(let time of start.options) {
+                    time.disabled = Number(time.value.split(':').join('') >= endValue)
+                }
+            });
+        
         </script>
 
         <!--Inline Javascript to send the event info from the form using POST-->
