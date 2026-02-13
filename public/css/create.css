@@ -81,6 +81,7 @@ p {
     border-color: #f4ecec;
     color: #f4ecec;
     background-color: #f87605;
+    text-align: center;
   }
 
 .back-button:hover {
@@ -111,6 +112,7 @@ p {
 .event-spaces-grid > div > h2 {
     font-size: calc(1.5vw + 1.5vh);
     text-decoration: underline;
+    color: #6a0b0b;
 }
 
 .event-spaces-grid > div > img {
@@ -121,4 +123,9 @@ p {
 
 .event-spaces-grid > div > p {
     font-size: 17px;
+}
+
+.back-to-page {
+    display: flex;
+    justify-content: center;
 }
