@@ -1,7 +1,7 @@
-CPS630 – Assignment 1: Multi-page Web Application
-Group 16: Sarthak Banglorewala, Param Chauhan, Balraj Grewal, Jatil Kapadia 
+# CPS630 – Assignment 1: Multi-page Web Application
+### Group 16: Sarthak Banglorewala, Param Chauhan, Balraj Grewal, Jatil Kapadia 
 
-Overview
+## Overview
 
 This project is a web application developed using Node.js and Express that allows users to create, view, and delete campus events. The goal of the application is to provide TMU students with a simple interface to reserve campus spaces for events.
 
@@ -17,11 +17,15 @@ Future extensions of this application could include:
 
 
 
-DOCUMENTATION: How to Run the Project
+## DOCUMENTATION: How to Run the Project
 
 1. Install Node.js if it is not already installed.
 
 2. Clone the repository or download the project folder.
+
+```shell 
+git clone https://github.com/paramsngh/Assignment1-.git
+```
 
 3. Navigate to the project directory:
 
@@ -38,7 +42,7 @@ DOCUMENTATION: How to Run the Project
 
 8. Watch Mp4 Video for quick overview of Web Application
 
-REFLECTION
+## REFLECTION
 
 This assignment helped us understand how a multi-page web application works using a client-server model. We built a Node.js server with Express, created multiple routes, and implemented a REST API that allows users to create, view, and delete events.
 
