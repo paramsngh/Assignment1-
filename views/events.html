@@ -9,11 +9,29 @@
   </head>
 
   <body>
+
+    <!-- Title and Description-->
+    <div class="title-box">
+      <h1> Events Page </h1>
+      <p> Take a look at the events TMU is running!</p>
+    </div>
     
+    <!-- Events section, holds heading and button that displays list of events-->
     <div class="events-box">
-      <button onClick=getItems()>Click to Load Events</button>
+      <h2> Click on the Button Below to View All of the TMU Events!</h2>
+      <button onClick=getItems()>Load Events</button>
+    </div>
+
+    <!-- List section, displays list of events (or message if there are no events)-->
+    <div class="list-box">
+      <h2> Events </h2>
       <ul id="eventList"></ul>
     </div>
+
+    <!-- Button that redirects back to homepage -->
+    <a href="/">
+      <button class="return-button">Return Home</button>
+    </a>
 
     <script>
 
@@ -30,7 +48,7 @@
   
         // If there are no events, edit eventsList with a list item notifying there is none
         if (events.length === 0) {
-          eventList.innerHTML = "<li>No events at this time</li>";
+          eventList.innerHTML = "<li>There are currently no events</li>";
           return;
         }
 
@@ -54,7 +72,7 @@
         });
       }
 
-      // Function to delete events from eventList
+      // Function to delete an event from eventList
       async function deleteEvent(id) {
 
         // Sends DELETE request to server
