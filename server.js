@@ -10,6 +10,20 @@ app.use(express.static(path.join(__dirname,'public')));
 let events = [];
 let eventId = 1;
 
+// Routing 
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/index.html'));
+});
+
+app.get('/create', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/create.html'));
+});
+
+app.get('/events', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/events.html'));
+});
+
 
 // API 
 
