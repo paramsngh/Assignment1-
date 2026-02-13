@@ -6,6 +6,7 @@
        <meta name="description" content="CPS630 A1 create.html">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta charset="utf-8">
+       <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/TMU_Bold_Logo.svg/250px-TMU_Bold_Logo.svg.png">
 
        <!--Link the appropriate css file-->
        <link rel="stylesheet" href="css/create.css">
@@ -17,54 +18,137 @@
             can. That is why we allow students to book various spaces around campus for free! Simply fill out
             the following form and the space is yours!
         </p>
+        <div class="form-box">   
+            <!--Form for all the necessary event information-->
+            <form class="input-grid" id="eventForm">
+                <!--Input box for the event name-->
+                <div>
+                    <label class="input-text">Event Name:</label>
+                    <input type="text" class="text-box" id="eventName" required>
+                </div>
+
+                <!--Date-->
+                <div>
+                    <label class="input-text">Date:</label>
+                    <input type="date" id="date" required>
+                </div> 
+    
+                <!--Select box for the location-->
+                <div>
+                    <label class="input-text">Location:</label>
+                    <select id="location" required>
+                        <option>SLC Amphitheatre</option>
+                        <option>RAC Court 1</option>
+                        <option>RAC Court 2</option>
+                        <option>Kerr Hall Upper Gym</option>
+                        <option>MAC Court</option>
+                        <option>Student Campus Centre (SCC)</option>
+                        <option>Rogers Communication Centre (RCC)</option>
+                        <option>International Living/Learning Centre (ILC) Lounge</option>
+                        <option>Ted Rogers School of Management Building</option>
+                    </select>
+                </div>
+    
+                <!--Start Time-->
+                <div>
+                    <label class="input-text">Start Time:</label>
+                    <select id="startTime" required></select>
+                </div>
+    
+                <!--End Time-->
+                <div>
+                    <label class="input-text">End Time:</label>
+                    <select id="endTime" required></select>
+                </div>
+    
+                <!--Submit Button-->
+                <div class="submit-format">
+                    <input type="submit" class="submit-button">
+                </div>
+            </form>
+        </div>
+
         
-        <!--Form for all the necessary event information-->
-        <form class="input-grid" id="eventForm">
-            <!--Input box for the event name-->
+        <div class="event-spaces-grid">
             <div>
-                <label class="input-text">Event Name:</label>
-                <input type="text" class="text-box" id="eventName" required>
+                <h2>SLC</h2>
+                <img src="https://www.torontomu.ca/content/dam/student-life-and-learning/slc/SLC107-min.jpg" alt="Picture of SLC">
+                <p>
+                    The SLC (Sheldon & Tracy Levy Student Learning Centre) is one of the largest, most popular
+                    buildings on campus. It has 8 floors, each differently themed to students' needs. It also
+                    contains a large space known as the amphitheatre on the first floor that can be and is 
+                    often booked out for events.
+                </p>
             </div>
-
-            <!--Select box for the location-->
             <div>
-                <label class="input-text">Location:</label>
-                <select name="location" id="location" required>
-                    <option>SLC Amphitheatre</option>
-                    <option>RAC Court 1</option>
-                    <option>RAC Court 2</option>
-                    <option>Kerr Hall Upper Gym</option>
-                    <option>MAC Court</option>
-                    <option>Student Campus Centre (SCC)</option>
-                    <option>Rogers Communication Centre (RCC)</option>
-                    <option>International Living/Learning Centre (ILC) Lounge</option>
-                    <option>Ted Rogers School of Management Building</option>
-                </select>
+                <h2>RAC Court</h2>
+                <img src="https://tmubold.ca/images/2021/7/28/RAC_1_Gym.jpg" alt="Picture of RAC Court">
+                <p>
+                    The RAC (Recreate and Athletic Centre) is one of TMU's two gyms on campus. Alongside 
+                    regular workout equipment, the gym has two basketball courts that can be booked to play
+                    different sports. Don't worry about equipment, if you book the court, we provide all of
+                    the equiment!
+                </p>
             </div>
-
-            <!--Start Date and Time-->
             <div>
-                <label class="input-text">Start Date/Time:</label>
-                <input type="datetime-local" id="start" required>
+                <h2>SCCs</h2>
+                <img src="https://theeyeopener.com/wp-content/uploads/2020/02/SCC_RyanDioso.jpg" alt="Picture of SCC">
+                <p>
+                    The SCC (Student Campus Centre) is a great spot for students to relax, study, unwind, 
+                    or even play some table tennis on our basement ping pong table. In addition, the main 
+                    SCC space can be booked for events!
+                </p>
             </div>
+        </div>
 
-            <!--End Date and Time-->
-            <div>
-                <label class="input-text">End Date/Time:</label>
-                <input type="datetime-local" id="end" required>
-            </div> 
+        <a href="/">
+            <button type="submit" class="back-button">Back to Main Menu</button>
+        </a>
 
-            <!--Submit Button-->
-            <div>
-                <input type="submit" class="submit-button">
-            </div>
-        </form>
+        <script>
+            const date = document.getElementById("date");
+            const today = new Date().toISOString().split("T")[0];
+            date.min = today;
+        </script>
+
+        <!--Inline Javascript to populate the start/end time select tags-->
+        <script>
+            function setTimes(id, startHour, endHour, minIntervals) {
+                let html = '';
+                const select = document.getElementById(id);
+                for(let hour = startHour; hour <= endHour; hour++) {
+                    for(let min = 0; min < 60; min += minIntervals) {
+                        if(hour === endHour && min > 0) {
+                            break;
+                        }
+                        let hh =  hour.toString().padStart(2, '0');
+                        let mm = min.toString().padStart(2, '0');
+                        html += `<option>${hh}:${mm}</option>`;
+                    }
+                }
+                select.innerHTML = html;
+            }
+            setTimes("startTime", 8, 22, 30);
+            setTimes("endTime", 8, 22, 30);
+
+            const start = document.getElementById("startTime");
+            const end = document.getElementById("endTime");
+            const form = document.getElementById("eventForm");
+
+            // Disable all of the prior times when a start time is selected by comparing their numerical time values.
+            start.addEventListener("change", () => {
+                const startValue = Number(start.value.split(':').join(''));
+                for(let time of end.options) {
+                    time.disabled = Number(time.value.split(':').join('') <= startValue);
+                }
+            })
+        </script>
 
         <!--Inline Javascript to send the event info from the form using POST-->
         <script>
             // get the event form using the id
             const eventForm = document.getElementById("eventForm");
-
+            
             // Run the function e when the submit button is clicked
             eventForm.addEventListener("submit", async (e) => {
 
@@ -73,12 +157,14 @@
 
                 // Get each of the form elements using their ids
                 const eventName = document.getElementById("eventName");
+                const date = document.getElementById("date");
                 const loc = document.getElementById("location");
                 const start = document.getElementById("start");
                 const end = document.getElementById("end");
 
                 console.log({
-                    title: eventName.value, 
+                    title: eventName.value,
+                    date: date.value, 
                     location: loc.value, 
                     startTime: start.value, 
                     endTime: end.value

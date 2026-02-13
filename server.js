@@ -47,7 +47,7 @@ app.post('/api/events', (req, res) => {
 
     const newEvent = {
         id: eventId++,
-        title, startTime, endTime, location
+        title, date, startTime, endTime, location
     };
     events.push(newEvent);
     res.status(201).json(newEvent)
