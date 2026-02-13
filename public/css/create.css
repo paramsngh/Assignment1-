@@ -1,0 +1,38 @@
+body {
+    background-color: #F28F3B;
+}
+
+.title {
+    text-align: center;
+    color: #272727;
+    text-decoration: underline;
+    font-size: 60px;
+}
+
+p {
+    text-align: center;
+    color: #272727;
+    font-size: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vw;
+    padding: 1vw 2vh;
+    justify-items: center;
+}
+
+.input-text {
+    text-align: center;
+    display: inline-block;
+    color: #272727;
+    font-size: 30px;
+}
+
+.text-box {
+    height: 25px;
+    font-size: 20px;
+}
