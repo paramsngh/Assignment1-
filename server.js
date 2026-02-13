@@ -37,17 +37,17 @@ res.status(200).json(events);
 
 // pushes the data coming from the user to events array but before that it checks if title and time is provided
 app.post('/api/events', (req, res) => {
-    const {title, time} = req.body;
+    const {title, startTime, endTime, location} = req.body;
 
-    if (!title || !time) {
+    if (!title || !startTime || !endTime || !location) {
         return res.status(400).json({
-            message: 'Title and time are required'
+            message: 'Title, Start Date/Time, End Date/Time, and Location are required'
         });
     }
 
     const newEvent = {
         id: eventId++,
-        title, time
+        title, startTime, endTime, location
     };
     events.push(newEvent);
     res.status(201).json(newEvent)

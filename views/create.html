@@ -19,15 +19,17 @@
         </p>
         
         <!--Form for all the necessary event information-->
-        <form class="input-grid">
+        <form class="input-grid" id="eventForm">
+            <!--Input box for the event name-->
             <div>
                 <label class="input-text">Event Name:</label>
-                <input type="text" class="text-box" required>
+                <input type="text" class="text-box" id="eventName" required>
             </div>
 
+            <!--Select box for the location-->
             <div>
                 <label class="input-text">Location:</label>
-                <select name="location" required>
+                <select name="location" id="location" required>
                     <option>SLC Amphitheatre</option>
                     <option>RAC Court 1</option>
                     <option>RAC Court 2</option>
@@ -39,14 +41,69 @@
                     <option>Ted Rogers School of Management Building</option>
                 </select>
             </div>
-            
 
+            <!--Start Date and Time-->
+            <div>
+                <label class="input-text">Start Date/Time:</label>
+                <input type="datetime-local" id="start" required>
+            </div>
+
+            <!--End Date and Time-->
+            <div>
+                <label class="input-text">End Date/Time:</label>
+                <input type="datetime-local" id="end" required>
+            </div> 
+
+            <!--Submit Button-->
+            <div>
+                <input type="submit" class="submit-button">
+            </div>
         </form>
-        <!--
-            Name of event
-            Date
-            Time
-            Location
-        -->
+
+        <!--Inline Javascript to send the event info from the form using POST-->
+        <script>
+            // get the event form using the id
+            const eventForm = document.getElementById("eventForm");
+
+            // Run the function e when the submit button is clicked
+            eventForm.addEventListener("submit", async (e) => {
+
+                // Make sure the page does not reload
+                e.preventDefault();
+
+                // Get each of the form elements using their ids
+                const eventName = document.getElementById("eventName");
+                const loc = document.getElementById("location");
+                const start = document.getElementById("start");
+                const end = document.getElementById("end");
+
+                console.log({
+                    title: eventName.value, 
+                    location: loc.value, 
+                    startTime: start.value, 
+                    endTime: end.value
+                });
+
+                // Send the POST request to the server
+                const response = await fetch("/api/events", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        title: eventName.value, 
+                        location: loc.value, 
+                        startTime: start.value, 
+                        endTime: end.value
+                    })
+                })
+
+                // If else statement notifying the user whether or not their reservation was successful.
+                if(response.ok) {
+                    alert("Your event reservation has been made successfully!");
+                }
+                else {
+                    alert("ERROR");
+                }
+            });
+        </script>
    </body>
 </html>
