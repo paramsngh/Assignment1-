@@ -32,10 +32,15 @@ git clone https://github.com/paramsngh/Assignment1-.git
 4. cd "projectname"
 
 5. Install dependencies:
-    - npm install
+    
+```shell 
+npm install
+```
 
 6. Start the server:
-    - node server.js
+```shell 
+node server.js
+```
 
 7. Open your browser and go to:
     http://localhost:3000
