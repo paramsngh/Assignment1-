@@ -36,7 +36,7 @@ DOCUMENTATION: How to Run the Project
 7. Open your browser and go to:
     http://localhost:3000
 
-8. Watch Mp4 Video for quick overwiew of Web Application
+8. Watch Mp4 Video for quick overview of Web Application
 
 REFLECTION
 
