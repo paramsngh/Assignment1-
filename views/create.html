@@ -24,41 +24,41 @@
                 <!--Input box for the event name-->
                 <div>
                     <label class="input-text">Event Name:</label>
-                    <input type="text" class="text-box" id="eventName" required>
+                    <input type="text" class="text-box" id="eventName" maxlength="55" required>
                 </div>
 
                 <!--Date-->
                 <div>
                     <label class="input-text">Date:</label>
-                    <input type="date" id="date" required>
+                    <input type="date" id="date" class="text-box" required>
                 </div> 
     
                 <!--Select box for the location-->
                 <div>
                     <label class="input-text">Location:</label>
-                    <select id="location" required>
+                    <select id="location" class="text-box" required>
                         <option>SLC Amphitheatre</option>
                         <option>RAC Court 1</option>
                         <option>RAC Court 2</option>
                         <option>Kerr Hall Upper Gym</option>
                         <option>MAC Court</option>
-                        <option>Student Campus Centre (SCC)</option>
-                        <option>Rogers Communication Centre (RCC)</option>
-                        <option>International Living/Learning Centre (ILC) Lounge</option>
-                        <option>Ted Rogers School of Management Building</option>
+                        <option>SCC</option>
+                        <option>RCC</option>
+                        <option>ILC Lounge</option>
+                        <option>TRSM Building</option>
                     </select>
                 </div>
     
                 <!--Start Time-->
                 <div>
                     <label class="input-text">Start Time:</label>
-                    <select id="startTime" required></select>
+                    <select id="startTime" class="text-box" required></select>
                 </div>
     
                 <!--End Time-->
-                <div>
+                <div class="end-time-position">
                     <label class="input-text">End Time:</label>
-                    <select id="endTime" required></select>
+                    <select id="endTime" class="text-box" required></select>
                 </div>
     
                 <!--Submit Button-->
@@ -159,8 +159,8 @@
                 const eventName = document.getElementById("eventName");
                 const date = document.getElementById("date");
                 const loc = document.getElementById("location");
-                const start = document.getElementById("start");
-                const end = document.getElementById("end");
+                const start = document.getElementById("startTime");
+                const end = document.getElementById("endTime");
 
                 console.log({
                     title: eventName.value,
@@ -175,7 +175,8 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        title: eventName.value, 
+                        title: eventName.value,
+                        date: date.value, 
                         location: loc.value, 
                         startTime: start.value, 
                         endTime: end.value
