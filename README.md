@@ -49,7 +49,7 @@ node server.js
 
 ## REFLECTION
 
-This assignment helped us understand how a multi-page web application works using a client-server model. We built a Node.js server with Express, created multiple routes, and implemented a REST API that allows users to create, view, and delete events.
+This assignment helped us understand how a multi-page web application works using a client-server model. We built a Node.js server with Express, created multiple routes, and implemented a REST API that allows users to create, view, and delete events. The REST API we built allows the frontend to communicate with the server using HTTP requests. We created three main routes, a GET request to retrieve all events, a POST request to create a new event, and a DELETE request to remove an event by its ID. This helped us better understand how data flows between the client and server and how different request methods are used to handle different actions in a web application.
 
 One challenge we faced was setting up the git to work collaboratly on the project. Once we figured out and granted the permission 
 all work was done smoothly.
