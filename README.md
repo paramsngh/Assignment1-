@@ -45,7 +45,7 @@ node server.js
 7. Open your browser and go to:
     http://localhost:3000
 
-8. Watch Mp4 Video for quick overview of Web Application
+8. Watch Mp4 Video for quick overview of Web Application, which can be found: https://drive.google.com/file/d/15d08ErWagCrH_sI7sILJHPaodBUa1KtH/view?usp=drive_link
 
 ## REFLECTION
 
@@ -53,5 +53,9 @@ This assignment helped us understand how a multi-page web application works usin
 
 One challenge we faced was setting up the git to work collaboratly on the project. Once we figured out and granted the permission 
 all work was done smoothly.
+
+Another challenge our team faced was the POST and GET requests. We faced an issue where we were unable to retreive nor send the data required. To resolve this, we looked over the course material and documentation online to debug the issue.
+
+Finally, we also had to make changes and update our frontend to make it more visually appealing. To overcome this, we decided to add more css components and rearrange the webpage to make it more appealing. 
 
 Overall, this project improved our understanding of web development fundamentals and gave us valuable experience working collaboratively as a team.
