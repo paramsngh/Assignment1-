@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+    <!--Create a title-->
        <title>Create Page</title>
 
+       <!--Description of this webpage-->
        <meta name="description" content="CPS630 A1 create.html">
+
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta charset="utf-8">
+
+       <!--FavIcon-->
        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/TMU_Bold_Logo.svg/250px-TMU_Bold_Logo.svg.png">
 
        <!--Link the appropriate css file-->
@@ -21,7 +26,7 @@
         <div class="form-box">   
             <!--Form for all the necessary event information-->
             <form class="input-grid" id="eventForm">
-                <!--Input box for the event name-->
+                <!--Input box for the event name. Made it maximum 40 characters so it stays on one line in events.html-->
                 <div>
                     <label class="input-text">Event Name:</label>
                     <input type="text" class="text-box" id="eventName" maxlength="40" required>
@@ -69,7 +74,7 @@
             </form>
         </div>
 
-        <!--A division containing a grid from the class to display the various spaces that can be booked-->
+        <!--A division containing a grid from the class to display the various spaces that can be booked with description-->
         <div class="event-spaces-grid">
             <div>
                 <h2>ILC Lounge</h2>
@@ -160,12 +165,14 @@
             </div>
         </div>
 
+        <!--Button to return to the main menu-->
         <div class="back-to-page">
             <a href="/">
                 <button type="submit" class="back-button">Back to Main Menu</button>
             </a>
         </div>
 
+        <!--Inline Javascript to disable all dates before todays date-->
         <script>
             const date = document.getElementById("date");
             const today = new Date().toISOString().split("T")[0];
@@ -174,20 +181,27 @@
 
         <!--Inline Javascript to populate the start/end time select tags-->
         <script>
+            /* Create a function that takes in element id, the starting hour, ending hour, intervals that the
+            minutes will increase by, and two booleans variables if you would like the times to start on
+            30 instead of on the hour (e.g., start at 8:30 instead of 8:00) */
             function setTimes(id, startHour, endHour, minIntervals, startAtHalf, endAtHalf) {
-                let html = '';
+                let html = '';                                          // Create html variable for innerHTML
                 const select = document.getElementById(id);
-                for(let hour = startHour; hour <= endHour; hour++) {
-                    for(let min = 0; min < 60; min += minIntervals) {
+                for(let hour = startHour; hour <= endHour; hour++) {    // First for loop increasing the hour by 1
+                    for(let min = 0; min < 60; min += minIntervals) {   // double foor loop increasing the minutes by the interval
+                        // Make sure if the user wants to start at half, increment by 30 first
                         if(hour === startHour && min === 0 && startAtHalf) {
                             min += 30
                         }
+                        // Make sure the time ends on a half hour if necessary
                         if(hour === endHour && endAtHalf) {
                             break;
                         }
+                        // Make sure the loop stops if it reaches the last time
                         if(hour === endHour && min > 0) {
                             break;
                         }
+                        // Format hh and mm variables to then put in innerHTML
                         let hh =  hour.toString().padStart(2, '0');
                         let mm = min.toString().padStart(2, '0');
                         html += `<option>${hh}:${mm}</option>`;
@@ -195,6 +209,7 @@
                 }
                 select.innerHTML = html;
             }
+            // Call the function twice, once for start time and once for end time
             setTimes("startTime", 8, 22, 30, false, true);
             setTimes("endTime", 8, 22, 30, true, false);
 
@@ -238,35 +253,38 @@
                 const start = document.getElementById("startTime");
                 const end = document.getElementById("endTime");
 
-                console.log({
-                    title: eventName.value,
-                    date: date.value, 
-                    location: loc.value, 
-                    startTime: start.value, 
-                    endTime: end.value
-                });
-
-                // Send the POST request to the server
-                const response = await fetch("/api/events", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        title: eventName.value,
-                        date: date.value, 
-                        location: loc.value, 
-                        startTime: start.value, 
-                        endTime: end.value
-                    })
-                })
-
-                // If else statement notifying the user whether or not their reservation was successful.
-                if(response.ok) {
-                    alert("Your event reservation has been made successfully!");
+                // Make sure the start time and the end time are not the same
+                if(start.value == end.value) {
+                    alert("Invalid Times: The start and end time of this event are the same");
                 }
-                else {
-                    alert("ERROR");
+                // Make sure the start time is before the end time
+                else if(start.value > end.value) {
+                    alert("Invalid Times: The start time is after the end time of this event");
+                }
+                else{
+                    // Send the POST request to the server
+                    const response = await fetch("/api/events", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            title: eventName.value,
+                            date: date.value, 
+                            location: loc.value, 
+                            startTime: start.value, 
+                            endTime: end.value
+                        })
+                    })
+    
+                    // If else statement notifying the user whether or not their reservation was successful.
+                    if(response.ok) {
+                        alert("Your event reservation has been made successfully!");
+                    }
+                    else {
+                        alert("ERROR");
+                    }
                 }
             });
+
         </script>
    </body>
 </html>
